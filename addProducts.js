@@ -19,7 +19,7 @@ else if(req.session.role==="admin")
 	
 	var sql="insert into productdata(asin,productName,productDescription,product_group) values(?,?,?,?)";
 
-	if(!Number.isInteger(asin) || isEmpty.check(productName) || isEmpty.check(productDescription) || isEmpty.check(product_group))
+	if(isEmpty.check(asin) || isEmpty.check(productName) || isEmpty.check(productDescription) || isEmpty.check(product_group))
 	{
 
 			resp.send({"message":"The input you provided is not valid"});
