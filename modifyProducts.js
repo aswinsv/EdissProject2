@@ -18,7 +18,7 @@ else if(req.session.role==="admin")
 	
 	var sql="update productdata set productName=?,productDescription=?,product_group=? where asin=?";
 
-	if(!Number.isInteger(asin) || isEmpty.check(productName) || isEmpty.check(productDescription) || isEmpty.check(product_group))
+	if(isEmpty.check(asin) || isEmpty.check(productName) || isEmpty.check(productDescription) || isEmpty.check(product_group))
 	{
 
 			resp.send({"message":"The input you provided is not valid"});
