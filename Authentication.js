@@ -49,7 +49,7 @@ exports.login=function(req,resp){
 				else{
 
 					resp.send({
-						"message":"There seems to be an error in the username and password combination you entered!!"
+						"message":"There seems to be an issue with the username/password combination that you entered"
 					});
 			}
 		}
@@ -57,7 +57,7 @@ exports.login=function(req,resp){
 				else{
 
 					resp.send({
-						"message":"There seems to be an error in the username and password combination you entered!!"
+						"message":"There seems to be an issue with the username/password combination that you entered"
 					});
 			}
 		} //outer else

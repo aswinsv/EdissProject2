@@ -24,8 +24,8 @@ if(!req.session.username)
 		resp.send({"message":"You are not currently logged in"});
 }	
 
-	if(isEmpty.check(fname) && isEmpty.check(lname) && isEmpty.check(address) && isEmpty.check(city) && isEmpty.check(state) &&
-		       isEmpty.check(zip) && isEmpty.check(email) && isEmpty.check(username) && isEmpty.check(password))
+	if(typeof fname==='undefined' && typeof lname==='undefined' && typeof address==='undefined' && typeof city==='undefined' && typeof state==='undefined' &&
+		       typeof zip==='undefined' && typeof email==='undefined' && typeof username==='undefined' && typeof password==='undefined')
 {
 	resp.send({"message":req.session.fname+" your information was successfully updated"});
 }	
@@ -36,60 +36,60 @@ else
 	
 			connectionPool.getConnection(function(err, connection) {
 
-			if(!isEmpty.check(fname))
+			if(typeof fname !='undefined')
 			{
 				sqlStatement+="fname='"+fname+"' ,";
 			
 			} // end of if 1 
 
-		 	if(!isEmpty.check(lname))
+		 	if(typeof lname !='undefined')
 			{
 				sqlStatement+="lname='"+lname+"' ,";
 				
 		    } // end of if 2	
 
-	     if(!isEmpty.check(address))
+	     if(typeof address !='undefined')
 		{
 			sqlStatement+="address='"+address+"' ,";
 			
 	    } // end of if 3
 
-	      if(!isEmpty.check(city))
+	      if(typeof city !='undefined')
 		{
 			sqlStatement+="city='"+city+"' ,";
 			
 	    } // end of if 4	
 
-	       if(!isEmpty.check(state))
+	       if(typeof state !='undefined')
 		{
 			sqlStatement+="state='"+state+"' ,";
 			
 	    } // end of if 5	
 
-	       if(!isEmpty.check(zip))
+	       if(typeof zip !='undefined')
 		{
 			sqlStatement+="zip='"+zip+"' ,";
 			
 	    } // end of if 6	
 
-	       if(!isEmpty.check(email))
+	       if(typeof email !='undefined')
 		{
 
 			sqlStatement+="email='"+email+"' ,";
 	    } // end of if 7	
 
 
-	        if(!isEmpty.check(username))
+	        if(typeof username !='undefined')
 		{
 
 				sqlStatement+="username='"+username+"' ,";
 	    } // end of if 8	
 
-	       if(!isEmpty.check(password))
+	       if(typeof password !='undefined')
 		{
 			sqlStatement+="password='"+password+"' ,";
 			
-	    } // end of if 9	
+	    } // end of if 9*/	
 
 	    sqlStatement=sqlStatement.substring(0,sqlStatement.length-2);
 
@@ -107,7 +107,7 @@ else
 			} //end of if
 			else
 			{	
-				if(!isEmpty.check(fname))
+				if(typeof fname !='undefined')
 	     		resp.send({"message":fname+" your information was successfully updated"});
 	     	else
 	     		resp.send({"message":req.session.fname+" your information was successfully updated"});

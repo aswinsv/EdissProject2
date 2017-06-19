@@ -45,7 +45,7 @@ else if(req.session.role==="admin")
 
 			    else  {
 
-				resp.send({"message":productName+" was registered successfully"});
+				resp.send({"message":productName+" was successfully added to the system"});
 
 			          } // end of inner else
 

@@ -9,7 +9,7 @@ exports.view=function(req,resp){
 
 	var lname=req.body.lname;
 
-	connectionPool.getConnection(function(err, connection) {
+	connectionPool.getConnection(function(err,connection) {
 
 
 			if(!req.session.username)	
@@ -20,7 +20,7 @@ exports.view=function(req,resp){
 		else if(req.session.role==="admin")
 		{
 
-			if(isEmpty.check(fname) && isEmpty.check(lname))
+			if(typeof fname ==='undefined' && typeof lname ==='undefined')
 			{	
 
 					connection.query('select * from userdata',function(err,result,fields){
@@ -33,9 +33,19 @@ exports.view=function(req,resp){
 						else
 						{
 							
+							var realResults = result.map(function(rResult) {
+								var obj = {};
+								obj.fname = rResult.fname;
+								obj.lname = rResult.lname;
+								obj.userId = rResult.username;
+								return obj;
+							});
+
+
+
 							var output=JSON.stringify({
 								message:"The action was successful",
-								user:result
+								user:realResults
 							});
 
 							
@@ -50,7 +60,7 @@ exports.view=function(req,resp){
 			        connection.release(); //release connection
 			} // end of if		
 
-			else if(isEmpty.check(lname))
+			else if(typeof fname!='undefined' && typeof lname==='undefined')
 			{	
 
 					connection.query('select * from userdata where fname LIKE ?','%'+[fname]+'%',function(err,result,fields){
@@ -67,9 +77,17 @@ exports.view=function(req,resp){
 
 						else
 						{
+							var realResults = result.map(function(rResult) {
+								var obj = {};
+								obj.fname = rResult.fname;
+								obj.lname = rResult.lname;
+								obj.userId = rResult.username;
+								return obj;
+							});
+							
 							var output=JSON.stringify({
 								message:"The action was successful",
-								user:result
+								user:realResults
 							});
 
 							
@@ -81,7 +99,7 @@ exports.view=function(req,resp){
 			        connection.release(); //release connection
 			} // end of if		
 
-			else if(isEmpty.check(fname))
+			else if(typeof lname!='undefined' && typeof fname==='undefined')
 			{	
 
 					connection.query('select * from userdata where lname LIKE ?','%'+[lname]+'%',function(err,result,fields){
@@ -98,9 +116,17 @@ exports.view=function(req,resp){
 
 						else
 						{
+							var realResults = result.map(function(rResult) {
+								var obj = {};
+								obj.fname = rResult.fname;
+								obj.lname = rResult.lname;
+								obj.userId = rResult.username;
+								return obj;
+							});
+							
 							var output=JSON.stringify({
 								message:"The action was successful",
-								user:result
+								user:realResults
 							});
 
 							
@@ -128,11 +154,18 @@ exports.view=function(req,resp){
 
 						else
 						{
+							var realResults = result.map(function(rResult) {
+								var obj = {};
+								obj.fname = rResult.fname;
+								obj.lname = rResult.lname;
+								obj.userId = rResult.username;
+								return obj;
+							});
+							
 							var output=JSON.stringify({
 								message:"The action was successful",
-								user:result
+								user:realResults
 							});
-
 							
 							resp.end(output);
 						}	

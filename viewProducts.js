@@ -1,7 +1,5 @@
 var connectionPool=require('./Connection.js');
 
-var isEmpty=require('./checkEmpty.js');
-
 
 exports.view=function(req,resp){
 
@@ -11,7 +9,7 @@ var keyword=req.body.keyword;
 var group=req.body.group;
 var i=0;
 
-if(isEmpty.check(asin) && isEmpty.check(keyword) && isEmpty.check(group))
+if(typeof asin ==='undefined' && typeof keyword ==='undefined' && typeof group ==='undefined')
 {
 	connectionPool.getConnection(function(err, connection) {
 
@@ -28,7 +26,7 @@ if(isEmpty.check(asin) && isEmpty.check(keyword) && isEmpty.check(group))
 		});// end of connection Pool		
 	
 } // end of if
-else if(isEmpty.check(keyword) && isEmpty.check(group))
+else if(typeof keyword ==='undefined' && typeof group ==='undefined')
 {
 	connectionPool.getConnection(function(err, connection) {
 
@@ -56,7 +54,7 @@ else if(isEmpty.check(keyword) && isEmpty.check(group))
 } // end of if else
 
 
-else if(isEmpty.check(asin) && isEmpty.check(group))
+else if(typeof asin ==='undefined' && typeof group ==='undefined')
 {
 	connectionPool.getConnection(function(err, connection) {
 
@@ -89,7 +87,7 @@ else if(isEmpty.check(asin) && isEmpty.check(group))
 
 } // end of if else
 
-else if(isEmpty.check(asin) && isEmpty.check(keyword))
+else if(typeof asin ==='undefined' && typeof keyword ==='undefined')
 {
 	connectionPool.getConnection(function(err, connection) {
 
@@ -124,7 +122,7 @@ else if(isEmpty.check(asin) && isEmpty.check(keyword))
 
 
 
-else if(isEmpty.check(asin))
+else if(typeof asin ==='undefined')
 {
 	connectionPool.getConnection(function(err, connection) {
 
@@ -158,7 +156,7 @@ else if(isEmpty.check(asin))
 } // end of if else
 
 
-else if(isEmpty.check(keyword))
+else if(typeof keyword ==='undefined')
 {
 	connectionPool.getConnection(function(err, connection) {
 
@@ -192,7 +190,7 @@ else if(isEmpty.check(keyword))
 } // end of if else
 
 
-else if(isEmpty.check(group))
+else if(typeof group ==='undefined')
 {
 	connectionPool.getConnection(function(err, connection) {
 
