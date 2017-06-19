@@ -23,6 +23,8 @@ if(typeof asin ==='undefined' && typeof keyword ==='undefined' && typeof group =
 			
 		});	 // end of connection
 
+		connection.release();
+
 		});// end of connection Pool		
 	
 } // end of if
@@ -48,6 +50,8 @@ else if(typeof keyword ==='undefined' && typeof group ==='undefined')
 		  }		
 			
 		});	 // end of connection
+
+		connection.release();
 
 		});// end of connection Pool
 
@@ -83,6 +87,8 @@ else if(typeof asin ==='undefined' && typeof group ==='undefined')
 			
 		});	 // end of connection
 
+		connection.release();
+
 		});// end of connection Pool
 
 } // end of if else
@@ -115,6 +121,8 @@ else if(typeof asin ==='undefined' && typeof keyword ==='undefined')
 		  }		
 			
 		});	 // end of connection
+
+		connection.release();
 
 		});// end of connection Pool
 
@@ -151,6 +159,8 @@ else if(typeof asin ==='undefined')
 			
 		});	 // end of connection
 
+		connection.release();
+
 		});// end of connection Pool
 
 } // end of if else
@@ -184,6 +194,8 @@ else if(typeof keyword ==='undefined')
 		  }		
 			
 		});	 // end of connection
+
+		connection.release();
 
 		});// end of connection Pool
 
@@ -219,6 +231,8 @@ else if(typeof group ==='undefined')
 			
 		});	 // end of connection
 
+		connection.release();
+
 		});// end of connection Pool
 
 } // end of if else
@@ -252,6 +266,8 @@ else
 		  }		
 			
 		});	 // end of connection
+
+		connection.release();
 
 		});// end of connection Pool
 

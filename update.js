@@ -116,7 +116,7 @@ else
 			
        });
 
-
+	    connection.release();
 	      
 	}); // end of connection Pool
 } // end of else loop			
