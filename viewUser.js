@@ -1,8 +1,5 @@
 var connectionPool=require('./Connection.js');
 
-var isEmpty=require('./checkEmpty.js');
-
-
 exports.view=function(req,resp){
 
 	var fname=req.body.fname;

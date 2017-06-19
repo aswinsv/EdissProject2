@@ -1,8 +1,5 @@
 var connectionPool=require('./Connection.js');
 
-var isEmpty=require('./checkEmpty.js');
-
-
 exports.registerUser=function(req,resp){
 
 	var fname=req.body.fname;
@@ -18,8 +15,8 @@ exports.registerUser=function(req,resp){
 	var sql="insert into userdata(fname,lname,address,city,state,zip,email,username,password) values(?,?,?,?,?,?,?,?,?)";
 
 
-	if(isEmpty.check(fname) || isEmpty.check(lname) || isEmpty.check(address) || isEmpty.check(city) || isEmpty.check(state) ||
-		       isEmpty.check(zip) || isEmpty.check(email) || isEmpty.check(username) || isEmpty.check(password))
+	if(typeof fname ==='undefined' || typeof lname ==='undefined' || typeof address ==='undefined' || typeof city ==='undefined' || typeof state ==='undefined' ||
+		       typeof zip ==='undefined' || typeof email ==='undefined' || typeof username ==='undefined' || typeof password ==='undefined')
 	{
 			resp.send({"message":"The input you provided is not valid"});
 	}	

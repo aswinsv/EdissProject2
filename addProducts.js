@@ -1,7 +1,5 @@
 var connectionPool=require('./Connection.js');
 
-var isEmpty=require('./checkEmpty.js');
-
 exports.add=function(req,resp){
 
 
@@ -19,7 +17,7 @@ else if(req.session.role==="admin")
 	
 	var sql="insert into productdata(asin,productName,productDescription,product_group) values(?,?,?,?)";
 
-	if(isEmpty.check(asin) || isEmpty.check(productName) || isEmpty.check(productDescription) || isEmpty.check(product_group))
+	if(typeof asin ==='undefined' || typeof productName ==='undefined' || typeof productDescription ==='undefined' || typeof product_group ==='undefined')
 	{
 
 			resp.send({"message":"The input you provided is not valid"});
