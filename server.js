@@ -16,7 +16,7 @@ var viewProducts=require('./viewProducts.js');
 
 var viewUsers=require('./viewUser.js');
 
-var port=3005;
+var port=3000;
 
 var sess;
 
