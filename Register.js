@@ -44,9 +44,11 @@ exports.registerUser=function(req,resp){
 
 			}
 
-			connection.release();
+			
 					
 			}); //query
+
+			connection.release();
 
 			}); // end of getConnection
 
