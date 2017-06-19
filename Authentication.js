@@ -64,7 +64,7 @@ exports.login=function(req,resp){
 
 		}); // end of query
 	
-		console.log("fname.."+sess);
+		
 		connection.release();
   }); // end of createConnection
 } // end of login
