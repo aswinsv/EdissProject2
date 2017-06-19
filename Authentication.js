@@ -9,7 +9,7 @@ exports.login=function(req,resp){
 		console.log("user_name...."+user_name+"password...."+password);
 
 
-	//connectionPool.getConnection(function(err, connection) {
+	connectionPool.getConnection(function(err, connection) {
         
 		console.log("connection"+connection);
 		connection.query('select * from userdata where username= ?',[user_name],function(err,result,fields){
@@ -68,7 +68,7 @@ exports.login=function(req,resp){
 	
 		console.log("fname.."+sess);
 		//connection.release();
-  //}); // end of createConnection
+  }); // end of createConnection
 } // end of login
 
 exports.logout=function(req,res){
