@@ -1,6 +1,9 @@
 var connectionPool=require('./Connection.js');
 
-exports.add=function(req,resp){
+module.exports.add=function(req,resp){
+
+
+	console.log("Inside add function");
 
 
 if(!req.session.username)	
@@ -8,7 +11,7 @@ if(!req.session.username)
 	resp.send({"message":"You are currently not logged in"});	
 }	
 
-else if(req.session.role==="admin")
+else if(req.session.username==="jadmin")
 {
 	var asin=req.body.asin;
 	var productName=req.body.productName;
@@ -26,6 +29,8 @@ else if(req.session.role==="admin")
 	else
    {
 
+
+   		console.log("Inside else loop");
    		
 		connectionPool.getConnection(function(err, connection) {
 

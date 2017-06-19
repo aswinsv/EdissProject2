@@ -9,7 +9,7 @@ exports.login=function(req,resp){
 		
 	connectionPool.getConnection(function(err, connection) {
 
-
+		console.log("connection"+connection);
 		connection.query('select * from userdata where username= ?',[user_name],function(err,result,fields){
 
 		if(err) {
@@ -30,7 +30,7 @@ exports.login=function(req,resp){
 					req.session.fname = result[0].fname;
 					req.session.username=result[0].username;
 
-					if(result[0].role==="Admin")
+					if(result[0].role==="admin")
 					{
 						req.session.role="admin";
 					}	
@@ -64,7 +64,7 @@ exports.login=function(req,resp){
 
 		}); // end of query
 	
-
+		console.log("fname.."+sess);
 		connection.release();
   }); // end of createConnection
 } // end of login
