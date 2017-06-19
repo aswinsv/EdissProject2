@@ -5,8 +5,7 @@ var connectionPool = mysql.createPool({
     host: 'edissdatabase.ctpoqk8h72ri.us-east-1.rds.amazonaws.com:3306',
     user: 'root',
     password: 'password',
-    database: 'edissproject2',
-    debug: false
+    database: 'edissproject2'
 });
 
 module.exports = connectionPool
