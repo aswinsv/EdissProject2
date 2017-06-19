@@ -7,10 +7,8 @@ exports.login=function(req,resp){
 	var password=req.body.password;
 	
 		console.log("user_name...."+user_name+"password...."+password);
-
-
 	connectionPool.getConnection(function(err, connection) {
-        
+
 		console.log("connection"+connection);
 		connection.query('select * from userdata where username= ?',[user_name],function(err,result,fields){
 
@@ -20,7 +18,7 @@ exports.login=function(req,resp){
 				"message":"There is an error in the query!!"
 			});
 
-			//connection.release();
+			connection.release();
 		} //end of if
 
 		else{
@@ -67,7 +65,7 @@ exports.login=function(req,resp){
 		}); // end of query
 	
 		console.log("fname.."+sess);
-		//connection.release();
+		connection.release();
   }); // end of createConnection
 } // end of login
 
