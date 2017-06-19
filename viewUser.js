@@ -11,7 +11,7 @@ exports.view=function(req,resp){
 
 			if(!req.session.username)	
 		{
-			resp.send({"message":"You are currently not logged in"});	
+			resp.send({"message":"You are not currently logged in"});	
 		}	
 
 		else if(req.session.role==="admin")
