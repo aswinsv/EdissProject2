@@ -74,8 +74,9 @@ exports.logout=function(req,res){
 
 	if(req.session.fname)
 	{
-		res.send({"message":"You have been successfully logged out"});
 		req.session.destroy();
+		res.send({"message":"You have been successfully logged out"});
+		
 		
 	}
 	else
