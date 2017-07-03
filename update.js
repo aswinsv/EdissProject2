@@ -1,7 +1,5 @@
 var connectionPool=require('./Connection.js');
 
-var isEmpty=require('./checkEmpty.js');
-
 var mysql=require('mysql');
 
 exports.updateInfo=function(req,resp){
