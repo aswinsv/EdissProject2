@@ -61,11 +61,11 @@ exports.login=function(req,resp){
 					});
 			}
 		} //outer else
-
+		connection.release();
 		}); // end of query
 	
 		
-		connection.release();
+		//connection.release();
   }); // end of createConnection
 } // end of login
 
