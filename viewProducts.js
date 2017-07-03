@@ -16,6 +16,8 @@ if(typeof asin ==='undefined' && typeof keyword ==='undefined' && typeof group =
 
 		connection.query('select asin,productName from productdata',function(err,result,fields){
 
+				connection.release();
+
 			resp.end(JSON.stringify({
 					"product":result
 				}
@@ -23,7 +25,7 @@ if(typeof asin ==='undefined' && typeof keyword ==='undefined' && typeof group =
 			
 		});	 // end of connection
 
-		connection.release();
+	
 
 		});// end of connection Pool		
 	
@@ -37,11 +39,13 @@ else if(typeof keyword ==='undefined' && typeof group ==='undefined')
 
 			if(result.length<=0)
 			{
+				connection.release();
 				resp.send({"message":"There are no products that match that criteria"});
 			}	
 
 			else
-		  {		
+		  {	
+		  		connection.release();	
 				resp.end(JSON.stringify({
 					"product":result
 				}
@@ -51,7 +55,6 @@ else if(typeof keyword ==='undefined' && typeof group ==='undefined')
 			
 		});	 // end of connection
 
-		connection.release();
 
 		});// end of connection Pool
 
@@ -67,17 +70,21 @@ else if(typeof asin ==='undefined' && typeof group ==='undefined')
 
 			if(err)
 			{
+				connection.release();
 				resp.send({"message":"Error in query"});
 				console.log(err);
 			}	
 
 			else if(result.length<=0)
 			{
+				connection.release();
 				resp.send({"message":"There are no products that match that criteria"});
+
 			}	
 
 			else
 		  {		
+		  		connection.release();
 				resp.end(JSON.stringify({
 					"product":result
 				}
@@ -87,7 +94,7 @@ else if(typeof asin ==='undefined' && typeof group ==='undefined')
 			
 		});	 // end of connection
 
-		connection.release();
+		
 
 		});// end of connection Pool
 
@@ -102,17 +109,20 @@ else if(typeof asin ==='undefined' && typeof keyword ==='undefined')
 
 			if(err)
 			{
+				connection.release();
 				resp.send({"message":"Error in query"});
 				console.log(err);
 			}	
 
 			else if(result.length<=0)
 			{
+				connection.release();
 				resp.send({"message":"There are no products that match that criteria"});
 			}	
 
 			else
-		  {		
+		  {	
+		  		connection.release();	
 				resp.end(JSON.stringify({
 					"product":result
 				}
@@ -122,7 +132,7 @@ else if(typeof asin ==='undefined' && typeof keyword ==='undefined')
 			
 		});	 // end of connection
 
-		connection.release();
+		
 
 		});// end of connection Pool
 
@@ -139,17 +149,20 @@ else if(typeof asin ==='undefined')
 
 			if(err)
 			{
+				connection.release();
 				resp.send({"message":"Error in query"});
 				console.log(err);
 			}	
 
 			else if(result.length<=0)
 			{
+				connection.release();
 				resp.send({"message":"There are no products that match that criteria"});
 			}	
 
 			else
-		  {		
+		  {	
+		  		connection.release();	
 				resp.end(JSON.stringify({
 					"product":result
 				}
@@ -159,7 +172,7 @@ else if(typeof asin ==='undefined')
 			
 		});	 // end of connection
 
-		connection.release();
+	
 
 		});// end of connection Pool
 
@@ -175,17 +188,20 @@ else if(typeof keyword ==='undefined')
 
 			if(err)
 			{
+				connection.release();	
 				resp.send({"message":"Error in query"});
 				console.log(err);
 			}	
 
 			else if(result.length<=0)
 			{
+				connection.release();	
 				resp.send({"message":"There are no products that match that criteria"});
 			}	
 
 			else
-		  {		
+		  {	
+		  		connection.release();		
 				resp.end(JSON.stringify({
 					"product":result
 				}
@@ -195,7 +211,7 @@ else if(typeof keyword ==='undefined')
 			
 		});	 // end of connection
 
-		connection.release();
+		
 
 		});// end of connection Pool
 
@@ -211,17 +227,20 @@ else if(typeof group ==='undefined')
 
 			if(err)
 			{
+				connection.release();	
 				resp.send({"message":"Error in query"});
 				console.log(err);
 			}	
 
 			else if(result.length<=0)
 			{
+				connection.release();	
 				resp.send({"message":"There are no products that match that criteria"});
 			}	
 
 			else
-		  {		
+		  {
+		  		connection.release();			
 				resp.end(JSON.stringify({
 					"product":result
 				}
@@ -231,7 +250,7 @@ else if(typeof group ==='undefined')
 			
 		});	 // end of connection
 
-		connection.release();
+		
 
 		});// end of connection Pool
 
@@ -247,17 +266,20 @@ else
 
 			if(err)
 			{
+				connection.release();	
 				resp.send({"message":"Error in query"});
 				console.log(err);
 			}	
 
 			else if(result.length<=0)
 			{
+				connection.release();	
 				resp.send({"message":"There are no products that match that criteria"});
 			}	
 
 			else
-		  {		
+		  {
+		  		connection.release();			
 				resp.end(JSON.stringify({
 					"product":result
 				}
@@ -267,7 +289,7 @@ else
 			
 		});	 // end of connection
 
-		connection.release();
+		
 
 		});// end of connection Pool
 

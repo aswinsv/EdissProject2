@@ -97,6 +97,8 @@ else
 
 
 	    connection.query(sqlStatement,function(err,result,fields){
+
+	    	connection.release();
 				
 			if(err) {
 
@@ -114,7 +116,7 @@ else
 			
        });
 
-	    connection.release();
+	    
 	      
 	}); // end of connection Pool
 } // end of else loop			
