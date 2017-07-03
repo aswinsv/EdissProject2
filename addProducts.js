@@ -11,7 +11,7 @@ if(!req.session.username)
 	resp.send({"message":"You are not currently logged in"});	
 }	
 
-else if(req.session.username==="jadmin")
+else if(req.session.role==="admin")
 {
 	var asin=req.body.asin;
 	var productName=req.body.productName;
