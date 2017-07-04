@@ -18,7 +18,7 @@ exports.login=function(req,resp){
 				"message":"There is an error in the query!!"
 			});
 
-			connection.release();
+			//connection.release();
 		} //end of if
 
 		else{

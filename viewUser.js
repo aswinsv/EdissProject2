@@ -11,7 +11,8 @@ exports.view=function(req,resp){
 
 			if(!req.session.username)	
 		{
-			resp.send({"message":"You are not currently logged in"});	
+			resp.send({"message":"You are not currently logged in"});
+			connection.release();	
 		}	
 
 		else if(req.session.role==="admin")
@@ -51,10 +52,10 @@ exports.view=function(req,resp){
 
 								
 						}	
+				        connection.release(); //release connection
 
 			        }); // end of connection query	
 
-			        connection.release(); //release connection
 			} // end of if		
 
 			else if(typeof fname!='undefined' && typeof lname==='undefined')
@@ -90,10 +91,9 @@ exports.view=function(req,resp){
 							
 							resp.end(output);
 						}	
-
+			        	connection.release(); //release connection
 			        }); // end of connection query	
 
-			        connection.release(); //release connection
 			} // end of if		
 
 			else if(typeof lname!='undefined' && typeof fname==='undefined')
@@ -130,10 +130,10 @@ exports.view=function(req,resp){
 							resp.end(output);
 								
 						}	
+			        connection.release(); //release connection
 
 			        }); // end of connection query	
 
-			        connection.release(); //release connection
 			} // end of if	
 
 			else
@@ -166,10 +166,10 @@ exports.view=function(req,resp){
 							
 							resp.end(output);
 						}	
+			        connection.release(); //release connection
 
 			        }); // end of connection query	
 
-			        connection.release(); //release connection
 
 		}		
 
@@ -181,6 +181,7 @@ exports.view=function(req,resp){
 	else
 	{
 		resp.send({"message":"You must be an admin to perform this action"});
+		connection.release();
 	}
  
   }); // end of connectionPool

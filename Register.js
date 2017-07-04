@@ -43,12 +43,11 @@ exports.registerUser=function(req,resp){
 				resp.send({"message":fname+" was registered successfully"});
 
 			}
-
+			connection.release();
 			
 					
 			}); //query
 
-			connection.release();
 
 			}); // end of getConnection
 
