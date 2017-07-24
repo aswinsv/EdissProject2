@@ -22,6 +22,8 @@ var viewProducts=require('./viewProducts.js');
 
 var viewUsers=require('./viewUser.js');
 
+var buyProducts=require('./buyProducts.js');
+
 var port=3000;
 
 var sess;
@@ -56,6 +58,8 @@ app.post('/modifyProduct',modifyProducts.modify);
 app.post('/viewProducts',viewProducts.view);
 
 app.post('/viewUsers',viewUsers.view);
+
+app.post('/buyProducts',buyProducts.buy);
 
 app.listen(port,function() {
 	console.log('Express listening on port:'+port+'!');
