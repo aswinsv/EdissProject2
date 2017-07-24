@@ -27,8 +27,13 @@ exports.login=function(req,resp){
 
 				if(result[0].password === password){
 
+
 					req.session.fname = result[0].fname;
+
+					
 					req.session.username=result[0].username;
+
+					
 
 					if(result[0].role==="admin")
 					{
@@ -37,8 +42,12 @@ exports.login=function(req,resp){
 					else
 					{
 						req.session.role="user";
-					}	
+					}
+
+					
+
 					sess=req.session.fname;
+
 
 					resp.send({
 						"message":"Welcome "+req.session.fname
