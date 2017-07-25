@@ -1,4 +1,4 @@
-var connectionPool=require('./Connection.js');
+var writePool=require('./writePool.js');
 
 var mysql=require('mysql');
 
@@ -32,7 +32,7 @@ else
 {
 			var sqlStatement="update userdata set "
 	
-			connectionPool.getConnection(function(err, connection) {
+			writePool.getConnection(function(err, connection) {
 
 			if(typeof fname !='undefined')
 			{

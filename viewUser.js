@@ -1,4 +1,4 @@
-var connectionPool=require('./Connection.js');
+var readPool=require('./readPool.js');
 
 exports.view=function(req,resp){
 
@@ -6,7 +6,7 @@ exports.view=function(req,resp){
 
 	var lname=req.body.lname;
 
-	connectionPool.getConnection(function(err,connection) {
+	readPool.getConnection(function(err,connection) {
 
 
 			if(!req.session.username)	
@@ -184,7 +184,7 @@ exports.view=function(req,resp){
 		connection.release();
 	}
  
-  }); // end of connectionPool
+  }); // end of readPool
 
   	
 } // end of view	

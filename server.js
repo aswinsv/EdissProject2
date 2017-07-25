@@ -6,6 +6,8 @@ var session=require("express-session");
 
 var redisStore = require('connect-redis')(session);
 
+//var MySQLStore=require('express-mysql-session')(session);
+
 var client = redis.createClient(6379, 'mycachecluster.irxo43.0001.use1.cache.amazonaws.com', {no_ready_check: true});
 
 var authentication=require('./Authentication.js');
@@ -24,6 +26,10 @@ var viewUsers=require('./viewUser.js');
 
 var buyProducts=require('./buyProducts.js');
 
+var productsPurchased=require('./productsPurchased.js');
+
+var getRecommendations=require('./getRecommendations.js');
+
 var port=3000;
 
 var sess;
@@ -34,6 +40,10 @@ var app=express();
 
 app.use( session({cookie: {maxAge:900000},resave:false,rolling:true,saveUnitialized:false,secret:'abcd123',
 	store: new redisStore({ host: 'mycachecluster.irxo43.0001.use1.cache.amazonaws.com', port: 6379, client: client,ttl :300})}));		     
+
+//var sessionStore = new MySQLStore(sessionOptions);
+
+app.use( session({cookie: {maxAge:900000},resave:false,rolling:true,saveUnitialized:false,secret:'abcd123'}));		     	
 
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -60,6 +70,10 @@ app.post('/viewProducts',viewProducts.view);
 app.post('/viewUsers',viewUsers.view);
 
 app.post('/buyProducts',buyProducts.buy);
+
+app.post('/productsPurchased',productsPurchased.purchased);
+
+app.post('/getRecommendations',getRecommendations.recommend);
 
 app.listen(port,function() {
 	console.log('Express listening on port:'+port+'!');

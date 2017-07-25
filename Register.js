@@ -1,4 +1,4 @@
-var connectionPool=require('./Connection.js');
+var writePool=require('./writePool.js');
 
 exports.registerUser=function(req,resp){
 
@@ -23,7 +23,7 @@ exports.registerUser=function(req,resp){
 
 	else
 {		
-		connectionPool.getConnection(function(err, connection) {
+		writePool.getConnection(function(err, connection) {
 
 
 			connection.query(sql,[fname,lname,address,city,state,zip,email,username,password],function(err,result,fields){

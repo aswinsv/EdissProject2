@@ -1,4 +1,4 @@
-var connectionPool=require('./Connection.js');
+var writePool=require('./writePool.js');
 
 exports.modify=function(req,resp){
 
@@ -26,7 +26,7 @@ else if(req.session.role==="admin")
    {
 
    		
-		connectionPool.getConnection(function(err, connection) {
+		writePool.getConnection(function(err, connection) {
 
 
 			connection.query(sql,[productName,productDescription,product_group,asin],function(err,result,fields){
