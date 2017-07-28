@@ -1,14 +1,12 @@
 var express=require("express");
 
-var redis = require("redis");
+//var redis = require("redis");
 
 var session=require("express-session");
 
-var redisStore = require('connect-redis')(session);
+//var redisStore = require('connect-redis')(session);
 
-//var MySQLStore=require('express-mysql-session')(session);
-
-var client = redis.createClient(6379, 'mycachecluster.irxo43.0001.use1.cache.amazonaws.com', {no_ready_check: true});
+//var client = redis.createClient(6379, 'mycachecluster.irxo43.0001.use1.cache.amazonaws.com', {no_ready_check: true});
 
 var authentication=require('./Authentication.js');
 
@@ -38,10 +36,10 @@ var bodyParser=require("body-parser");
 
 var app=express();
 
-app.use( session({cookie: {maxAge:900000},resave:false,rolling:true,saveUnitialized:false,secret:'abcd123',
-	store: new redisStore({ host: 'mycachecluster.irxo43.0001.use1.cache.amazonaws.com', port: 6379, client: client,ttl :300})}));		     
+//app.use( session({cookie: {maxAge:900000},resave:false,rolling:true,saveUnitialized:false,secret:'abcd123',
+	//store: new redisStore({ host: 'mycachecluster.irxo43.0001.use1.cache.amazonaws.com', port: 6379, client: client,ttl :300})}));		     
 
-//var sessionStore = new MySQLStore(sessionOptions);
+	app.use(session({cookie: {maxAge:900000},resave:false,rolling:true,saveUnitialized:false,secret:'abcd123'}));
 
 app.use( session({cookie: {maxAge:900000},resave:false,rolling:true,saveUnitialized:false,secret:'abcd123'}));		     	
 

@@ -1,4 +1,4 @@
-var connectionPool=require('./Connection.js');
+var readPool=require('./readPool.js');
 
 
 exports.login=function(req,resp){
@@ -7,7 +7,7 @@ exports.login=function(req,resp){
 	var password=req.body.password;
 	
 		console.log("user_name...."+user_name+"password...."+password);
-	connectionPool.getConnection(function(err, connection) {
+	readPool.getConnection(function(err, connection) {
 
 		console.log("connection"+connection);
 		connection.query('select * from userdata where username= ?',[user_name],function(err,result,fields){

@@ -14,7 +14,7 @@ if(typeof asin ==='undefined' && typeof keyword ==='undefined' && typeof group =
 	readPool.getConnection(function(err, connection) {
 
 
-		connection.query('select asin,productName from productdata',function(err,result,fields){
+		connection.query('select asin,productName from productdata_read',function(err,result,fields){
 
 				connection.release();
 
@@ -35,7 +35,7 @@ else if(typeof keyword ==='undefined' && typeof group ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		connection.query('select asin,productName from productdata where asin=?',[asin],function(err,result,fields){
+		connection.query('select asin,productName from productdata_read where asin=?',[asin],function(err,result,fields){
 
 			if(result.length<=0)
 			{
@@ -66,7 +66,13 @@ else if(typeof asin ==='undefined' && typeof group ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		connection.query('select asin,productName from productdata where productName LIKE ?','%'+keyword+'%',function(err,result,fields){
+		var query="select asin,productName from productdata_read where MATCH(productName,productDescription) AGAINST ('"+keyword+"')";
+
+
+		console.log("Query to be executed:"+query);
+
+
+		connection.query(query,function(err,result,fields){
 
 			if(err)
 			{
@@ -105,7 +111,7 @@ else if(typeof asin ==='undefined' && typeof keyword ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		connection.query('select asin,productName from productdata where  product_group=?',[group],function(err,result,fields){
+		connection.query('select asin,productName from productdata_read where  product_group=?',[group],function(err,result,fields){
 
 			if(err)
 			{
@@ -145,7 +151,11 @@ else if(typeof asin ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		connection.query('select asin,productName from productdata where  (productDescription LIKE ? OR productName LIKE ?) AND product_group=?',['%'+keyword+'%','%'+keyword+'%',group],function(err,result,fields){
+		var query_asin="select asin,productName from productdata_read where MATCH(productDescription,productName) AGAINST('"+keyword+"') AND product_group=?";
+
+		console.log("Query to be executed:"+query_asin);
+
+		connection.query(query_asin,group,function(err,result,fields){
 
 			if(err)
 			{
@@ -184,7 +194,7 @@ else if(typeof keyword ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		connection.query('select asin,productName from productdata where  asin=? AND product_group=?',[asin,group],function(err,result,fields){
+		connection.query('select asin,productName from productdata_read where  asin=? AND product_group=?',[asin,group],function(err,result,fields){
 
 			if(err)
 			{
@@ -223,7 +233,11 @@ else if(typeof group ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		connection.query('select asin,productName from productdata where  asin=? AND ( productDescription LIKE ? OR productName LIKE ? )',[asin,'%'+keyword+'%','%'+keyword+'%'],function(err,result,fields){
+		var query_group="select asin,productName from productdata_read where  asin=? AND MATCH(productDescription,productName) AGAINST ('"+keyword+"')";
+
+		console.log("Query to be executed:"+query_group);
+
+		connection.query(query_group,asin,function(err,result,fields){
 
 			if(err)
 			{
@@ -262,7 +276,11 @@ else
 	readPool.getConnection(function(err, connection) {
 
 
-		connection.query('select asin,productName from productdata where  asin=? AND ( productDescription LIKE ? OR productName LIKE ? ) AND product_group=?',[asin,'%'+keyword+'%','%'+keyword+'%',group],function(err,result,fields){
+		var query_final="select asin,productName from productdata_read where  asin=? AND MATCH(productDescription,productName) AGAINST ('"+keyword+"') AND product_group=?";
+
+		console.log("Query to be executed:"+query_final);
+
+		connection.query(query_final,[asin,group],function(err,result,fields){
 
 			if(err)
 			{

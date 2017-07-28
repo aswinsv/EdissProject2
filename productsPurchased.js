@@ -11,7 +11,7 @@ else if(req.session.role==="admin")
 {
 	var username=req.body.username;
 
-	var sql="select p.productName as productName,count(*) AS No_Purchased from purchasehistory ph join productdata p on ph.asin=p.asin group by ph.username,p.productName having ph.username=?";
+	var sql="select p.productName as productName,count(*) AS No_Purchased from purchasehistory ph join productdata_write p on ph.asin=p.asin group by ph.username,p.productName having ph.username=?";
 
 	readPool.getConnection(function(err, connection) {
 

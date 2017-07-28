@@ -27,9 +27,9 @@ var connection = mysql.createConnection({
   host     : 'edissdatabase.ctpoqk8h72ri.us-east-1.rds.amazonaws.com',
   user     : 'root',
   password : 'password',
-  database : 'edissproject2',
+  database : 'edissproject4',
   multipleStatements: 'true',
-  port:3306
+  port:'3306'
 });
 
 var sql = wrapper(connection);
@@ -53,20 +53,25 @@ lineReader.eachLine('../InputData/productRecords.json', function(line, last) {
     if(jsonRecord.description == null){
       jsonRecord.description = "";
     }
+    if(jsonRecord.categories == null) {
+      jsonRecord.categories = [""];
+     
+    }
     values += `('${jsonRecord.title}', '${jsonRecord.categories[0]}', '${jsonRecord.description}', '${jsonRecord.asin}')`;
     numRecords++;
 
 //****************************************************Change the query to align with your schema******************************************************/
     if (numRecords == recordBlock) {
-      query = `INSERT INTO productdata (productName, product_group, productDescription, asin) VALUES ${values};`; //Template, replaces ${values} with the value of values.
+      query = `INSERT INTO productdata_write (productName, product_group, productDescription, asin) VALUES ${values};`; //Template, replaces ${values} with the value of values.
       values = "";
       numRecords = 0;
       execute = true;
-      console.log(query);
+      //console.log(query);
     }
   }catch(err) {
     execute = false;//there was a quote in the text and the parse failed ... skip insert
     console.log(err);
+
   }
   if(execute){
     co(function* () {

@@ -14,7 +14,10 @@ else if(req.session.role==="admin")
 	var productDescription=req.body.productDescription;
 	var product_group=req.body.group;	
 	
-	var sql="update productdata set productName=?,productDescription=?,product_group=? where asin=?";
+	var sql="update productdata_write set productName=?,productDescription=?,product_group=? where asin=?";
+
+	var sql_readTable="update productdata_read set productName=?,productDescription=?,product_group=? where asin=?";
+
 
 	if(typeof asin ==='undefined' || typeof productName ==='undefined' || typeof productDescription ==='undefined' || typeof product_group ==='undefined')
 	{
@@ -31,7 +34,21 @@ else if(req.session.role==="admin")
 
 			connection.query(sql,[productName,productDescription,product_group,asin],function(err,result,fields){
 
+
 				if(err) {
+
+					resp.send({"message":"The input you provided is not valid"});
+
+					console.log(err.code);
+
+				
+			       } //end of inner if
+
+			    else  {
+
+			    connection.query(sql_readTable,[productName,productDescription,product_group,asin],function(err,result,fields){
+
+			    	if(err) {
 
 					resp.send({"message":"The input you provided is not valid"});
 
@@ -46,10 +63,18 @@ else if(req.session.role==="admin")
 
 			          } // end of inner else
 
-			connection.release();
+			
+			});	
+
+
+			    connection.release();
+
+		} // end of inner else
+
+			
 
 			});	
-   });	
+   }); // end of writeppol	
 
    }	// end of else
  } // end of else if  

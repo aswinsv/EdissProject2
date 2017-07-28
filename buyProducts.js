@@ -48,6 +48,9 @@ else
 
 			    else  {
 
+                    if(products.length>1)
+                {
+
                     var recommendation_query="insert into recommendation(bought,alsobought) values";
 
                     var query_Str;
@@ -86,6 +89,13 @@ else
 
                      });   
                   }); // end of inner writePool
+
+                 }   
+
+                 else
+              {
+                  resp.send({"message":"The action was successful"});
+              }      
                                 
 
 			     } // end of inner else
