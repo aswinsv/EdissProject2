@@ -66,7 +66,7 @@ else if(typeof asin ==='undefined' && typeof group ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		var query="select asin,productName from productdata_read where MATCH(productName,productDescription) AGAINST ('"+keyword+"')";
+		var query="select asin,productName from productdata_read where MATCH(productName,productDescription) AGAINST ('\""+keyword+"\"' IN BOOLEAN MODE)";
 
 
 		console.log("Query to be executed:"+query);
@@ -151,7 +151,7 @@ else if(typeof asin ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		var query_asin="select asin,productName from productdata_read where MATCH(productDescription,productName) AGAINST('"+keyword+"') AND product_group=?";
+		var query_asin="select asin,productName from productdata_read where MATCH(productDescription,productName) AGAINST('\""+keyword+"\"' IN BOOLEAN MODE) AND product_group=?";
 
 		console.log("Query to be executed:"+query_asin);
 
@@ -233,7 +233,7 @@ else if(typeof group ==='undefined')
 	readPool.getConnection(function(err, connection) {
 
 
-		var query_group="select asin,productName from productdata_read where  asin=? AND MATCH(productDescription,productName) AGAINST ('"+keyword+"')";
+		var query_group="select asin,productName from productdata_read where  asin=? AND MATCH(productDescription,productName) AGAINST ('\""+keyword+"\"' IN BOOLEAN MODE)";
 
 		console.log("Query to be executed:"+query_group);
 
@@ -276,7 +276,7 @@ else
 	readPool.getConnection(function(err, connection) {
 
 
-		var query_final="select asin,productName from productdata_read where  asin=? AND MATCH(productDescription,productName) AGAINST ('"+keyword+"') AND product_group=?";
+		var query_final="select asin,productName from productdata_read where  asin=? AND MATCH(productDescription,productName) AGAINST ('\""+keyword+"\"' IN BOOLEAN MODE) AND product_group=?";
 
 		console.log("Query to be executed:"+query_final);
 
