@@ -28,7 +28,7 @@ var productsPurchased=require('./productsPurchased.js');
 
 var getRecommendations=require('./getRecommendations.js');
 
-var port=3005;
+var port=3000;
 
 var sess;
 
@@ -71,7 +71,7 @@ app.post('/buyProducts',buyProducts.buy);
 
 app.post('/productsPurchased',productsPurchased.purchased);
 
-app.post('/getRecommendations',getRecommendations.recommend);
+//app.post('/getRecommendations',getRecommendations.recommend);
 
 app.listen(port,function() {
 	console.log('Express listening on port:'+port+'!');
